@@ -1,0 +1,40 @@
+generated: '2026-07-17'
+method: searched
+source: https://github.com/aplazo/php.aplazo-magento-2-payment-gateway (Service/ApiService.php)
+summary:
+  types: [apiKey, http]
+  api_key_in: [header, body]
+  token_format: jwt
+  description: >-
+    Aplazo's merchant API uses a two-part credential (apiToken + merchantId)
+    issued in the merchant's Aplazo account. Every request carries the
+    credential as the merchant_id and api_token headers. Loan origination first
+    exchanges the credential at POST /api/auth for a short-lived JWT which is
+    then sent as an Authorization bearer token on subsequent calls.
+schemes:
+  - name: merchantCredentialHeaders
+    type: apiKey
+    in: header
+    parameter_names: [merchant_id, api_token]
+    description: >-
+      Per-request merchant credential headers sent on every call to the Aplazo
+      merchant API.
+    sources:
+      - github.com/aplazo/php.aplazo-magento-2-payment-gateway Service/ApiService.php
+  - name: bearerAuth
+    type: http
+    scheme: bearer
+    bearer_format: JWT
+    description: >-
+      JWT bearer token returned in the Authorization field of POST /api/auth,
+      passed as the Authorization header on loan-origination requests.
+    obtained_via:
+      operation: POST /api/auth
+      request_body: '{ "apiToken": "...", "merchantId": "..." }'
+      returns: Authorization (JWT)
+    sources:
+      - github.com/aplazo/php.aplazo-magento-2-payment-gateway Service/ApiService.php
+credentials:
+  issued_in: Aplazo merchant account
+  fields: [apiToken, merchantId]
+docs: https://github.com/aplazo/php.aplazo-magento-2-payment-gateway
