@@ -1,0 +1,28 @@
+# Aplazo
+
+> Aplazo is a Mexican buy now, pay later (BNPL) payment platform that lets shoppers split online and in-store purchases into installments without a credit card. For merchants, Aplazo exposes a REST payment API (api.aplazo.mx) and official e-commerce plugins to originate loans at checkout, check loan status, and process refunds and cancellations.
+
+## APIs
+- [Aplazo Merchant Payment API](https://api.aplazo.mx): Originate installment loans at checkout, retrieve loan status, refund and cancel. Auth: apiToken + merchantId exchanged for a JWT bearer at POST /api/auth. Sandbox host: https://api.aplazo.net.
+
+## Operations
+- POST /api/auth — exchange apiToken + merchantId for a JWT bearer token
+- POST /api/loan — create an installment loan and get the customer redirect
+- GET /api/pos/loan/{cartId} — get loan status (active = OUTSTANDING)
+- POST /api/pos/loan/refund — refund a loan (idempotent via X-Idempotency-Key)
+- POST /api/pos/loan/cancel — cancel an incomplete loan
+
+## Integrations
+- [Magento 2 Gateway](https://github.com/aplazo/php.aplazo-magento-2-payment-gateway): official first-party module (Packagist aplazo/aplazopayment)
+- [VTEX Widget](https://github.com/aplazo/aplazo-vtex-widget)
+- Shopify, PrestaShop, Tiendanube (platform app stores); EBANX aggregator
+
+## Docs
+- [Aplazo GitHub org](https://github.com/aplazo)
+- [Terms and Conditions](https://aplazo.mx/terms-and-conditions)
+- [Privacy Notice](https://aplazo.mx/privacy-and-policy)
+
+## Notes
+- Currency: MXN only.
+- Region: Mexico.
+- Support: soporte@aplazo.mx

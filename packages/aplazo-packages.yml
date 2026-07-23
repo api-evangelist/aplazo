@@ -1,0 +1,27 @@
+generated: '2026-07-17'
+method: searched
+source: https://packagist.org/packages/aplazo/aplazopayment
+packages:
+  - language: php
+    registry: packagist
+    name: aplazo/aplazopayment
+    url: https://packagist.org/packages/aplazo/aplazopayment
+    install: composer require aplazo/aplazopayment
+    version: 4.0.11
+    description: Aplazo Payment Gateway for Magento 2 (official first-party module).
+    source_code: https://github.com/aplazo/php.aplazo-magento-2-payment-gateway
+    official: true
+  - language: javascript
+    registry: github
+    name: aplazo-vtex-widget
+    url: https://github.com/aplazo/aplazo-vtex-widget
+    description: Aplazo checkout widget for the VTEX commerce platform.
+    source_code: https://github.com/aplazo/aplazo-vtex-widget
+    official: true
+notes: >-
+  Aplazo distributes its merchant checkout integration primarily as e-commerce
+  platform plugins rather than a general-purpose SDK. The Magento 2 gateway is
+  published on Packagist (composer) from the aplazo GitHub org and is the
+  reference client for the api.aplazo.mx REST API. Aplazo also ships listed
+  integrations for Shopify, PrestaShop, Tiendanube and VTEX (platform app
+  stores) and is available as a payment method through the EBANX aggregator.

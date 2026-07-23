@@ -1,0 +1,24 @@
+generated: '2026-07-17'
+method: derived
+source: https://github.com/aplazo/php.aplazo-magento-2-payment-gateway (Helper/Data.php, Setup/Patch/Data/AddAplazoWebhookReceivedStatus.php, Controller/Order/Operations.php)
+type: Webhooks
+spec_type: none
+description: >-
+  Aplazo posts loan lifecycle notifications back to a merchant-side callback
+  URL. The official Magento gateway exposes rest/default/V1/aplazo/callback and
+  advances the order into an aplazo_webhook_received state when the notification
+  arrives, and an aplazo_order_cancelled state on cancellation. Aplazo does not
+  publish an AsyncAPI document; this captures the observed webhook surface only.
+delivery:
+  transport: HTTP POST
+  target: merchant-configured callback URL
+events:
+  - name: loan.completed
+    description: Customer completed financing; loan becomes OUTSTANDING and the order is confirmed (aplazo_webhook_received).
+    derived: true
+  - name: order.cancelled
+    description: Loan/order was cancelled (aplazo_order_cancelled).
+    derived: true
+note: >-
+  Event names are derived labels for the observed merchant-side states; Aplazo
+  does not publish a formal event catalog. No AsyncAPI spec fabricated.

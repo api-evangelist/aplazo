@@ -1,0 +1,31 @@
+generated: '2026-07-17'
+method: derived
+source: https://github.com/aplazo/php.aplazo-magento-2-payment-gateway (Service/ApiService.php)
+format: unstructured
+note: >-
+  Aplazo does not publish a documented error reference or an RFC 9457
+  problem+json schema on its public surface. The following are the failure modes
+  observed in the official Magento client, which treats any non-success HTTP
+  response (or a missing expected field) as an error and surfaces the endpoint
+  URL and message. Titles/remediation are derived, not published.
+problems:
+  - condition: authentication_failed
+    source_operation: POST /api/auth
+    title: Unable to retrieve Aplazo API token
+    detail: apiToken/merchantId rejected or no Authorization returned from /api/auth.
+    remediation: Verify apiToken and merchantId from the Aplazo merchant account and the correct environment host.
+  - condition: no_response
+    source_operation: any
+    title: No response from Aplazo request
+    detail: The request to the endpoint returned no usable body.
+    remediation: Retry; check connectivity to api.aplazo.mx (live) / api.aplazo.net (sandbox).
+  - condition: loan_creation_failed
+    source_operation: POST /api/loan
+    title: Loan could not be created
+    detail: Loan origination did not return a redirect/loan for the cart.
+    remediation: Validate cart payload (amounts, currency MXN) and bearer token freshness.
+  - condition: refund_failed
+    source_operation: POST /api/pos/loan/refund
+    title: Refund could not be processed
+    detail: Refund request against the loan failed.
+    remediation: Retry safely with the same X-Idempotency-Key; confirm the loan is refundable.

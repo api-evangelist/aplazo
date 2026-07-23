@@ -1,0 +1,12 @@
+generated: '2026-07-17'
+method: generated
+source: https://github.com/aplazo/php.aplazo-magento-2-payment-gateway (real merchant-API operations)
+skills:
+  - file: aplazo-checkout-loan.md
+    name: Offer Aplazo Buy-Now-Pay-Later at checkout
+    api: Aplazo Merchant Payment API
+    operations: ['POST /api/auth', 'POST /api/loan', 'GET /api/pos/loan/{cartId}']
+  - file: aplazo-refund-loan.md
+    name: Refund or cancel an Aplazo loan
+    api: Aplazo Merchant Payment API
+    operations: ['POST /api/pos/loan/refund', 'POST /api/pos/loan/cancel', 'GET /api/pos/loan/{cartId}']

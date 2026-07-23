@@ -1,0 +1,25 @@
+generated: '2026-07-17'
+method: derived
+source: https://github.com/aplazo/php.aplazo-magento-2-payment-gateway (Helper/Data.php)
+versioning:
+  scheme: unversioned-path
+  note: >-
+    Merchant API endpoints live under /api/... with no version segment observed.
+    The Magento gateway module itself versions on Packagist (current 4.0.11).
+environments:
+  - name: production
+    api_base: https://api.aplazo.mx
+    tracking_base: https://core.aplazo.mx
+  - name: sandbox
+    api_base: https://api.aplazo.net
+    tracking_base: https://core.aplazo.net
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No public deprecation policy or RFC 8594 Sunset/Deprecation header support found.
+sla:
+  url: null
+status_page: null
+note: >-
+  No public status page or SLA page was found for Aplazo. Absence recorded as
+  data, not fabricated. No StatusPage/Deprecation pointer emitted.

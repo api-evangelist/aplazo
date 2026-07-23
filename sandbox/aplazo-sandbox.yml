@@ -1,0 +1,18 @@
+generated: '2026-07-17'
+method: searched
+source: https://github.com/aplazo/php.aplazo-magento-2-payment-gateway (Helper/Data.php)
+test_live_separation:
+  mechanism: host switch
+  description: >-
+    A per-merchant sandbox flag switches the API host. There is no key-prefix
+    scheme; the same apiToken/merchantId model is used against the test host.
+  sandbox_host: https://api.aplazo.net
+  live_host: https://api.aplazo.mx
+  sandbox_tracking_host: https://core.aplazo.net
+  live_tracking_host: https://core.aplazo.mx
+test_values:
+  note: >-
+    Aplazo does not publish magic test card numbers, test bank accounts, or
+    hosted test tokens on its public developer surface. None are asserted here
+    (no fabrication). Test credentials are issued per merchant in the Aplazo
+    account for the sandbox environment.

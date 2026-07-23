@@ -1,0 +1,28 @@
+generated: '2026-07-17'
+method: derived
+status: candidate
+source: https://github.com/aplazo/php.aplazo-magento-2-payment-gateway (Service/ApiService.php)
+note: >-
+  No official hosted/remote Aplazo MCP server was found. This is a CANDIDATE
+  tool surface derived from the real merchant-API operations exercised by
+  Aplazo's official Magento 2 gateway. Base host api.aplazo.mx (live) /
+  api.aplazo.net (sandbox).
+server:
+  name: aplazo
+  transport: http
+tools:
+  - name: authenticate
+    description: Exchange apiToken + merchantId for a JWT bearer token.
+    source_operation: POST /api/auth
+  - name: create_loan
+    description: Originate an Aplazo installment loan for a cart and get the customer redirect.
+    source_operation: POST /api/loan
+  - name: get_loan_status
+    description: Retrieve the status of a loan by cart id (success status OUTSTANDING).
+    source_operation: GET /api/pos/loan/{cartId}
+  - name: refund_loan
+    description: Refund an outstanding loan (idempotent via X-Idempotency-Key).
+    source_operation: POST /api/pos/loan/refund
+  - name: cancel_loan
+    description: Cancel a loan that was not completed/paid.
+    source_operation: POST /api/pos/loan/cancel

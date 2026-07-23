@@ -1,0 +1,37 @@
+generated: '2026-07-17'
+method: derived
+source: https://github.com/aplazo/php.aplazo-magento-2-payment-gateway (Service/ApiService.php, Model/*)
+entities:
+  - name: Merchant
+    description: The store integrating Aplazo; identified by merchantId with an apiToken credential.
+    key_fields: [merchantId, apiToken]
+  - name: Loan
+    description: >-
+      An installment financing agreement Aplazo originates for a customer cart.
+      Identified/looked up by cartId; a successful/active loan reports status
+      OUTSTANDING.
+    key_fields: [cartId, status, totalAmount, currency]
+    status_values: [OUTSTANDING]
+  - name: Refund
+    description: A (partial or full) refund against an outstanding loan.
+    key_fields: [cartId, totalAmount]
+    idempotency: X-Idempotency-Key
+  - name: WebhookNotification
+    description: Loan lifecycle notification Aplazo posts to the merchant callback URL.
+relationships:
+  - from: Loan
+    to: Merchant
+    type: belongs_to
+    via: merchantId
+  - from: Refund
+    to: Loan
+    type: belongs_to
+    via: cartId
+  - from: WebhookNotification
+    to: Loan
+    type: belongs_to
+    via: cartId
+notes: >-
+  Derived from the operations and fields exercised by Aplazo's official Magento
+  gateway; Aplazo does not publish a public object reference, so id-prefix and
+  full field domains are not asserted.

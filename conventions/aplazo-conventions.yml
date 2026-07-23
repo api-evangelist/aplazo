@@ -1,0 +1,47 @@
+generated: '2026-07-17'
+method: searched
+source: https://github.com/aplazo/php.aplazo-magento-2-payment-gateway (Service/ApiService.php, Helper/Data.php)
+authentication:
+  style: merchant credential headers (merchant_id + api_token) plus a JWT bearer for loan origination
+  detail: authentication/aplazo-authentication.yml
+idempotency:
+  supported: true
+  header: X-Idempotency-Key
+  scope: refunds (POST /api/pos/loan/refund)
+  description: >-
+    Refund requests accept an optional X-Idempotency-Key header so a retried
+    refund does not double-process. Observed in the official Magento 2 gateway
+    (ApiService::createRefund passes X-Idempotency-Key when provided).
+  evidence: Service/ApiService.php createRefund($orderData, ?string $idempotencyKey)
+base_urls:
+  production: https://api.aplazo.mx
+  sandbox: https://api.aplazo.net
+  tracking_production: https://core.aplazo.mx
+  tracking_staging: https://core.aplazo.net
+environment_selection:
+  mechanism: sandbox flag switches host between api.aplazo.net (test) and api.aplazo.mx (live)
+currency:
+  default: MXN
+  note: Aplazo settles in Mexican pesos (MXN) only.
+error_envelope:
+  observed: >-
+    The Magento client treats a non-success HTTP response (no body / missing
+    expected field) as a failure and surfaces the endpoint URL in the error.
+    A structured, documented error schema was not found on Aplazo's public
+    surface; see errors/aplazo-problem-types.yml for the derived catalog.
+webhooks:
+  supported: true
+  detail: asyncapi/aplazo-webhooks.yml
+  description: >-
+    Aplazo posts loan lifecycle notifications back to a merchant callback URL
+    (the Magento module exposes rest/default/V1/aplazo/callback and tracks an
+    aplazo_webhook_received order state).
+versioning:
+  scheme: unversioned path
+  note: Endpoints live under /api/... with no version segment observed.
+cross_links:
+  authentication: authentication/aplazo-authentication.yml
+  errors: errors/aplazo-problem-types.yml
+  lifecycle: lifecycle/aplazo-lifecycle.yml
+  sandbox: sandbox/aplazo-sandbox.yml
+  data_model: data-model/aplazo-data-model.yml

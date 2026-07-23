@@ -1,8 +1,16 @@
 aid: aplazo
 name: Aplazo
-description: 'Aplazo is a company surfaced as a portfolio company of qed-investors and added to the API
-  Evangelist network as a stub for enrichment. Sector: payments. This profile is a lead awaiting the enrichment
-  pipeline.'
+description: >-
+  Aplazo is a Mexican buy now, pay later (BNPL) payment platform that lets
+  shoppers split online and in-store purchases into installments without a
+  credit card, paying over time directly from their bank account. For merchants,
+  Aplazo exposes a REST payment API (api.aplazo.mx) and official e-commerce
+  plugins (Magento 2, VTEX, Shopify, PrestaShop, Tiendanube) to originate loans
+  at checkout, retrieve loan status, and process refunds and cancellations.
+  Merchants authenticate with an apiToken and merchantId to obtain a short-lived
+  JWT bearer token, then create loans that redirect the customer to Aplazo to
+  complete financing. Aplazo is backed by QED Investors and operates in Mexico,
+  settling in Mexican pesos (MXN).
 url: https://raw.githubusercontent.com/api-evangelist/aplazo/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -10,13 +18,52 @@ x-backed-by:
 - qed-investors
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
 modified: '2026-07-17'
+image: https://aplazoassets.s3.us-west-2.amazonaws.com/icons/aplazo/favicon.ico
 tags:
 - Company
 - Payments
-apis: []
+- BNPL
+- Buy Now Pay Later
+- Installments
+- Fintech
+- Lending
+- Mexico
+- Checkout
+- E-commerce
+apis:
+- name: Aplazo Merchant Payment API
+  description: >-
+    REST API for merchants to originate Aplazo installment loans at checkout,
+    retrieve loan status, and process refunds and cancellations. Credentials
+    (apiToken + merchantId) are exchanged at POST /api/auth for a JWT bearer.
+  humanURL: https://github.com/aplazo/php.aplazo-magento-2-payment-gateway
+  baseURL: https://api.aplazo.mx
+  tags:
+  - Payments
+  - BNPL
+  - Loans
+  - Checkout
+  - Refunds
+  properties:
+  - type: Authentication
+    url: authentication/aplazo-authentication.yml
+  - type: SourceCode
+    url: https://github.com/aplazo/php.aplazo-magento-2-payment-gateway
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -25,3 +72,44 @@ maintainers:
 common:
 - type: Website
   url: https://aplazo.mx/pages/home
+- type: GitHubOrganization
+  url: https://github.com/aplazo
+- type: TermsOfService
+  url: https://aplazo.mx/terms-and-conditions
+- type: PrivacyPolicy
+  url: https://aplazo.mx/privacy-and-policy
+- type: Support
+  url: mailto:soporte@aplazo.mx
+- type: Packages
+  url: packages/aplazo-packages.yml
+- type: SDKs
+  url: packages/aplazo-packages.yml
+- type: Authentication
+  url: authentication/aplazo-authentication.yml
+- type: Conventions
+  url: conventions/aplazo-conventions.yml
+- type: Idempotency
+  url: conventions/aplazo-conventions.yml
+- type: MCPServer
+  url: mcp/aplazo-mcp.yml
+- type: ErrorCatalog
+  url: errors/aplazo-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/aplazo-lifecycle.yml
+- type: Sandbox
+  url: sandbox/aplazo-sandbox.yml
+- type: DataModel
+  url: data-model/aplazo-data-model.yml
+- type: Webhooks
+  url: asyncapi/aplazo-webhooks.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/aplazo-llms.txt
+- type: DomainSecurity
+  url: security/aplazo-domain-security.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
