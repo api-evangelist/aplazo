@@ -70,6 +70,13 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: IssueTracker
+  url: https://github.com/aplazo/php.aplazo-magento-2-payment-gateway/issues
+- type: Releases
+  url: https://github.com/aplazo/php.aplazo-magento-2-payment-gateway/releases
+- type: License
+  name: MIT
+  url: https://github.com/aplazo/php.aplazo-magento-2-payment-gateway/blob/master/LICENSE
 - type: Website
   url: https://aplazo.mx/pages/home
 - type: GitHubOrganization
