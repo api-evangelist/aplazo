@@ -44,6 +44,17 @@ tags:
 - Lending
 - Mexico
 - Checkout
+- E-Commerce
+tags_raw:
+- Company
+- Payments
+- BNPL
+- Buy Now Pay Later
+- Installments
+- Fintech
+- Lending
+- Mexico
+- Checkout
 - E-commerce
 apis:
 - name: Aplazo Merchant Payment API
