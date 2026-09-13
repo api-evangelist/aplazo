@@ -52,7 +52,6 @@ image: https://aplazoassets.s3.us-west-2.amazonaws.com/icons/aplazo/favicon.ico
 tags:
 - Company
 - Payments
-- BNPL
 - Buy Now Pay Later
 - Installments
 - Fintech
@@ -80,6 +79,12 @@ apis:
   humanURL: https://github.com/aplazo/php.aplazo-magento-2-payment-gateway
   baseURL: https://api.aplazo.mx
   tags:
+  - Payments
+  - Buy Now Pay Later
+  - Loans
+  - Checkout
+  - Refunds
+  tags_raw:
   - Payments
   - BNPL
   - Loans
